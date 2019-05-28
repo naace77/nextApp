@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
       };
     }
     case ADD_EDOC_SECCESS: {
-      console.log("matchedData", action.data);
+      // console.log("matchedData", action.data);
       var matchedData = action.data.map((item, index) => {
         // var test = ;
         return {

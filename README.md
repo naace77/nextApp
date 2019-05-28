@@ -189,3 +189,20 @@ Node는 JavaScript 실행기 / Node 안에 Http 모듈이 서버역할을 대신
 ## passport
 
 > `/passport/index.js`, `router/user/index.js` 파일 참고.
+> cookie로 로그인 여부 판단 하기 및 로그인하기 `AppLayout.js` 참고
+
+## SERVER SIDE RENDERING
+
+> 네이버 등 검색엔진에 검색이 되게끔 하는 방법  
+> 또한 랜더되기전 서버에서 미리 값을 넣어두기 때문에 향상된 UX 를 제공할 수 있다.  
+> 추가로 동적인 페이지를 생성하기 위함.(ex) 게시글 border/1 border/2 이런경우  
+> npm i morgan express-session cookie-parser dotenv nodemon  
+> /front/server.js 생성 및 코드 작성  
+> dot env 서버랑 동일하게 작성
+
+## getInitialProps
+
+> `_app.js` 참고  
+> 서버사이드 랜더링의 핵심이다  
+> 서버쪽에서 페이지를 불러올때 실행1 + 프론트세서 넥스트라우터로 페이지 넘나들때는 프론트에서 실행1 총 2번 실행  
+> 여기서 saga랑 연결해줘서 호출해주면 된다.

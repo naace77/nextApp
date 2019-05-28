@@ -1,4 +1,11 @@
-import { all, fork, takeLatest, put, call } from "redux-saga/effects";
+import {
+  all,
+  fork,
+  takeLatest,
+  put,
+  call,
+  takeEvery
+} from "redux-saga/effects";
 import {
   ADD_EDOC_REQUEST,
   ADD_EDOC_SECCESS,
@@ -11,7 +18,6 @@ import axios from "axios";
 axios.defaults.baseURL = "http://localhost:5000";
 
 function addEDocAPI(data) {
-  console.log("getEDOC", data);
   return axios.post("/edoc/getEdoc", data);
 }
 function* addEDoc(action) {
@@ -22,6 +28,7 @@ function* addEDoc(action) {
       data: result.data
     });
   } catch (e) {
+    console.log("err", e);
     yield put({
       type: ADD_EDOC_FAILURE,
       data: e.responce.data
@@ -29,7 +36,7 @@ function* addEDoc(action) {
   }
 }
 function* watchAddEDoc() {
-  yield takeLatest(ADD_EDOC_REQUEST, addEDoc);
+  yield takeEvery(ADD_EDOC_REQUEST, addEDoc);
 }
 export default function* edocSaga() {
   yield all([fork(watchAddEDoc)]);

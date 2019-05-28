@@ -1,3 +1,5 @@
+import { actionChannel } from "redux-saga/effects";
+
 //user 정보를 담고있는 스토어, 초기값
 export const initialState = {
   isLoggedIn: false, // 로그인여부
@@ -18,6 +20,10 @@ export const LOG_IN_FAILURE = "LOG_IN_FAILURE";
 export const LOG_OUT_REQUEST = "LOG_OUT_REQUEST";
 export const LOG_OUT_SUCCESS = "LOG_OUT_SUCCESS";
 export const LOG_OUT_FAILURE = "LOG_OUT_FAILURE";
+
+export const LOAD_USER_REQUEST = "LOAD_USER_REQUEST";
+export const LOAD_USER_SUCCESS = "LOAD_USER_SUCCESS";
+export const LOAD_USER_FAILURE = "LOAD_USER_FAILURE";
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -66,6 +72,25 @@ const reducer = (state = initialState, action) => {
         ...state,
         me: null,
         isLoggingOut: false
+      };
+    }
+    case LOAD_USER_REQUEST: {
+      return {
+        // 다음 state 변경
+        ...state
+      };
+    }
+    case LOAD_USER_SUCCESS: {
+      return {
+        ...state,
+        me: action.data,
+        isLoggedIn: true
+      };
+    }
+    case LOAD_USER_FAILURE: {
+      return {
+        ...state,
+        logInErrorReason: action.data
       };
     }
     default: {

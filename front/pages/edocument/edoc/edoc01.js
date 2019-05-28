@@ -1,12 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import { Table, Input, Button, Icon, Tabs } from "antd";
+import Link from "next/link";
 import Highlighter from "react-highlight-words";
 import { useSelector } from "react-redux";
 import { LIST_EDEG1CODE } from "../../../globalValue";
+import Edit01 from "../editor/edit01";
 const edoc01 = () => {
   const [searchText, setSerchText] = useState("");
+  const [filteredInfo, setFilterdInfo] = useState({});
+  const [sortedInfo, setSortedInfo] = useState({});
+  const [clickedItem, setClickedItem] = useState({});
+  const [editVisible, setEditVisible] = useState(false);
+  const [editGubun, setEditGubun] = useState("N");
   const { edoc, isLogging } = useSelector(state => state.edocument);
   const { me } = useSelector(state => state.me);
+  // 데이터 리덕스에서 가져와서 나누기
   const doc =
     edoc !== null &&
     edoc.filter(
@@ -38,6 +46,8 @@ const edoc01 = () => {
     );
 
   var searchInput = null;
+
+  // 검색기능
   const getColumnSearchProps = dataIndex => ({
     filterDropdown: ({
       setSelectedKeys,
@@ -107,13 +117,24 @@ const edoc01 = () => {
     clearFilters();
     setSerchText("");
   };
-  const filteredInfo = filteredInfo || {};
+
+  // 필터 기능
+  const handleChange = (pagination, filters, sorter) => {
+    // console.log("Various parameters", pagination, filters, sorter);
+    setFilterdInfo(filters);
+    setSortedInfo(sorter);
+    // this.setState({
+    //   filteredInfo: filters,
+    //   sortedInfo: sorter
+    // });
+  };
   const filtedEdeg1code = LIST_EDEG1CODE.map((item, index) => {
     return {
       text: item.name,
-      value: item.value
+      value: item.name
     };
   });
+
   const columns = [
     {
       title: "구분",
@@ -121,10 +142,14 @@ const edoc01 = () => {
       key: "EDEG1Name",
       width: "10%",
       filters: filtedEdeg1code.filter(
-        item => item.value === 100 || item.value === 101 || item.value === 102
+        item =>
+          item.text === "인사" || item.text === "업무" || item.text === "총무"
       ),
-      filteredValue: filteredInfo.name || null,
-      onFilter: (value, record) => record.name.includes(value)
+      filteredValue: filteredInfo.EDEG1Name || null,
+      onFilter: (value, record) => {
+        // console.log(record, value, record.EDEG1Name.includes(value));
+        return record.EDEG1Name.includes(value);
+      }
     },
     {
       title: "제목",
@@ -137,14 +162,16 @@ const edoc01 = () => {
       title: "기안일",
       dataIndex: "EDDateTime",
       key: "EDDateTime",
-      width: "20%"
+      width: "20%",
+      sorter: (a, b) => new Date(a.EDDateTime) - new Date(b.EDDateTime),
+      sortOrder: sortedInfo.columnKey === "EDDateTime" && sortedInfo.order
     },
     {
       title: "결재자",
       dataIndex: "EJAFTJOINSTNAME",
       key: "EJAFTJOINSTNAME",
       width: "10%",
-      ...getColumnSearchProps("address")
+      ...getColumnSearchProps("EJAFTJOINSTNAME")
     },
     {
       title: "상태",
@@ -160,10 +187,14 @@ const edoc01 = () => {
       key: "EDEG1Name",
       width: "10%",
       filters: filtedEdeg1code.filter(
-        item => item.value === 100 || item.value === 101 || item.value === 102
+        item =>
+          item.text === "인사" || item.text === "업무" || item.text === "총무"
       ),
-      filteredValue: filteredInfo.name || null,
-      onFilter: (value, record) => record.name.includes(value)
+      filteredValue: filteredInfo.EDEG1Name || null,
+      onFilter: (value, record) => {
+        // console.log(record, value, record.EDEG1Name.includes(value));
+        return record.EDEG1Name.includes(value);
+      }
     },
     {
       title: "제목",
@@ -176,14 +207,16 @@ const edoc01 = () => {
       title: "기안일",
       dataIndex: "EDDateTime",
       key: "EDDateTime",
-      width: "20%"
+      width: "20%",
+      sorter: (a, b) => new Date(a.EDDateTime) - new Date(b.EDDateTime),
+      sortOrder: sortedInfo.columnKey === "EDDateTime" && sortedInfo.order
     },
     {
       title: "기안자",
-      dataIndex: "EJAFTJOINSTNAME",
-      key: "EJAFTJOINSTNAME",
+      dataIndex: "EJBEFJOINSTNAME",
+      key: "EJBEFJOINSTNAME",
       width: "10%",
-      ...getColumnSearchProps("address")
+      ...getColumnSearchProps("EJBEFJOINSTNAME")
     },
     {
       title: "상태",
@@ -199,10 +232,14 @@ const edoc01 = () => {
       key: "EDEG1Name",
       width: "10%",
       filters: filtedEdeg1code.filter(
-        item => item.value === 100 || item.value === 101 || item.value === 102
+        item =>
+          item.text === "인사" || item.text === "업무" || item.text === "총무"
       ),
-      filteredValue: filteredInfo.name || null,
-      onFilter: (value, record) => record.name.includes(value)
+      filteredValue: filteredInfo.EDEG1Name || null,
+      onFilter: (value, record) => {
+        // console.log(record, value, record.EDEG1Name.includes(value));
+        return record.EDEG1Name.includes(value);
+      }
     },
     {
       title: "제목",
@@ -215,14 +252,16 @@ const edoc01 = () => {
       title: "기안일",
       dataIndex: "EDDateTime",
       key: "EDDateTime",
-      width: "20%"
+      width: "20%",
+      sorter: (a, b) => new Date(a.EDDateTime) - new Date(b.EDDateTime),
+      sortOrder: sortedInfo.columnKey === "EDDateTime" && sortedInfo.order
     },
     {
-      title: "결재자",
-      dataIndex: "EJAFTJOINSTNAME",
-      key: "EJAFTJOINSTNAME",
+      title: "기안자",
+      dataIndex: "EDSTNAME",
+      key: "EDSTNAME",
       width: "10%",
-      ...getColumnSearchProps("address")
+      ...getColumnSearchProps("EDSTNAME")
     },
     {
       title: "상태",
@@ -231,11 +270,35 @@ const edoc01 = () => {
       width: "10%"
     }
   ];
+  const itemClicked = async (record, index) => {
+    console.log("itemClicked", record, index);
+    await setClickedItem(record);
+    await setEditGubun("U"); // UPDATE
+    await setEditVisible(true);
+  };
   const TabPane = Tabs.TabPane;
-  return isLogging ? null : (
+  return isLogging || edoc === null ? null : (
     <Tabs type="card">
       <TabPane tab="내 결재함" key="1">
-        <Table columns={columns} dataSource={doc} />
+        {editVisible ? (
+          <Edit01
+            clickedItem={clickedItem}
+            setEditVisible={setEditVisible}
+            gubun={editGubun}
+            me={me}
+          />
+        ) : (
+          <Table
+            columns={columns}
+            dataSource={doc}
+            onChange={handleChange}
+            onRow={(record, rowIndex) => {
+              return {
+                onClick: () => itemClicked(record, rowIndex)
+              };
+            }}
+          />
+        )}
       </TabPane>
       <TabPane tab="업무 요청" key="2">
         <Table columns={columns2} dataSource={doc2} />

@@ -3,14 +3,22 @@ var router = express.Router();
 var globalValue = require("../../globalValue");
 const passport = require("passport");
 
+router.get("/", (req, res) => {
+  //get/user
+  if (!req.user) {
+    return res.status(401).send("로그인이 필요합니다.");
+  }
+  return res.json(req.user);
+});
 router.post("/login", (req, res, next) => {
+  console.log("info", "login");
   try {
     passport.authenticate("local", (err, user, info) => {
       if (err) {
         console.error(err);
         return next(err);
       }
-      // console.log("info", info);
+      console.log("info", info);
       if (info) {
         return res.status(401).send(info.reason);
       }
@@ -26,9 +34,11 @@ router.post("/login", (req, res, next) => {
   } catch (e) {
     console.error(e);
   }
+  // res.send("OK");
 });
 
 router.post("/logout", (req, res) => {
+  console.log("info", "logout");
   req.logout();
   req.session.destroy();
   res.send("logOut 성공");

@@ -3,7 +3,7 @@ export const LIST_EDEG1CODE = [
   { name: "인사", value: 100 },
   { name: "업무", value: 101 },
   { name: "총무", value: 102 },
-  { name: "업무", value: 200 },
+  { name: "업무2", value: 200 },
   { name: "교부", value: 300 },
   { name: "동의", value: 301 },
   { name: "공지", value: 302 }

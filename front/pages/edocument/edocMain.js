@@ -3,28 +3,11 @@ import { Layout, Menu, Icon } from "antd";
 import Edoc1 from "./edoc/edoc01";
 import Edoc2 from "./edoc/edoc02";
 import Edoc3 from "./edoc/edoc03";
-import { useDispatch, useSelector } from "react-redux";
-import { ADD_EDOC_REQUEST } from "../../reducers/edocument01";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 const edocMain = () => {
   const [selectedPage, setSelectedPage] = useState("1");
-  const { me } = useSelector(state => state.me); // 여기서 state 는 전체 state (reducer/index.js - state)
-  // console.log(me);
-  // redux에 전자문서를 붙여준다
-  const dispatch = useDispatch();
-  useEffect(() => {
-    // console.log("useEffect");
-    // dispatch({
-    //   type: ADD_EDOC_REQUEST,
-    //   data: {
-    //     stcode: me.SUSTCODE,
-    //     scdbname: me.SCDBNAME,
-    //     schostip: me.SCHOSTIP
-    //   }
-    // });
-  }, []);
 
   return (
     <Layout>
@@ -32,10 +15,10 @@ const edocMain = () => {
         breakpoint="lg"
         collapsedWidth="0"
         onBreakpoint={broken => {
-          console.log(broken);
+          // console.log(broken);
         }}
         onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
+          // console.log(collapsed, type);
         }}
       >
         <div className="logo" />
@@ -76,5 +59,4 @@ const edocMain = () => {
     </Layout>
   );
 };
-
 export default edocMain;

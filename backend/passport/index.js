@@ -7,16 +7,19 @@ module.exports = () => {
   });
   passport.deserializeUser((SUID, done) => {
     // 서버족에 [{id:3, cookie :"asdfgh"}] 서버에서 이러한 정보를 쿠키를 보냄
+    console.log("passport");
     try {
       var con = globalValue.connectDB("InfraPortal");
       con.connect();
       var sql = `SELECT A.SUCODE, A.SUNAME, A.SUSCCODE, A.SUID, A.SULEVEL,A.SUSTCODE, B.SCDBNAME, B.SCHOSTIP FROM SYSUSER A 
-      JOIN SYSCOMPANY B ON A.SUSCCODE = B.SCCODE WHERE SUID = ? AND SUPW = ?`;
+      JOIN SYSCOMPANY B ON A.SUSCCODE = B.SCCODE WHERE SUID = ?`;
       var parm = [SUID];
       con.query(sql, parm, function(err, rows, fields) {
         if (!err) {
           const user = rows;
           return done(null, user); //req.user에 저장됨
+        } else {
+          return done(err);
         }
       });
       con.end();
