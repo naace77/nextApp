@@ -21,6 +21,7 @@ https://velog.io/@velopert/react-hooks
 ## 프로젝트 필요한 모듈 설정
 
 > cd front  
+> npm init  
 > npm i -g next (next 명령어 쓸수 있다)  
 > npm i react react-dom next(리엑트, 넥스트에 필요함)  
 > npm i -D nodemon webpack (D 옵션은 개발에만 사용 한다는 의미)  
@@ -37,6 +38,8 @@ https://velog.io/@velopert/react-hooks
     "start": "next start"
   },
 ```
+
+> 실행전 pages/index.js 생성
 
 ## 라우터 시스템
 

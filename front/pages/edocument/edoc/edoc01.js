@@ -2,9 +2,10 @@ import React, { useState, useCallback } from "react";
 import { Table, Input, Button, Icon, Tabs } from "antd";
 import Link from "next/link";
 import Highlighter from "react-highlight-words";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { LIST_EDEG1CODE } from "../../../globalValue";
 import Edit01 from "../editor/edit01";
+import { LOAD_USER_REQUEST } from "../../../reducers/user";
 const edoc01 = () => {
   const [searchText, setSerchText] = useState("");
   const [filteredInfo, setFilterdInfo] = useState({});
@@ -270,11 +271,15 @@ const edoc01 = () => {
       width: "10%"
     }
   ];
+  // const dispatch = useDispatch();
   const itemClicked = async (record, index) => {
     console.log("itemClicked", record, index);
     await setClickedItem(record);
     await setEditGubun("U"); // UPDATE
     await setEditVisible(true);
+    // dispatch({
+    //   type: LOAD_USER_REQUEST
+    // });
   };
   const TabPane = Tabs.TabPane;
   return isLogging || edoc === null ? null : (

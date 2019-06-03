@@ -2,23 +2,21 @@ import React from "react";
 import Head from "next/head";
 import AppLayout from "../components/AppLayout";
 
+import withRedux from "next-redux-wrapper";
+import withReduxSaga from "next-redux-saga"; //넥스트용 리덕스 사가
 // _app.js 는 모든 곳에 들어가는 곳이기다.
 // 리덕스는 모든 곳에서 공유해야 한다 따라서 이곳에서 정의.
-
-import { Provider } from "react-redux"; //중앙통제실 역할
 import { createStore, compose, applyMiddleware } from "redux"; //중앙통제실 역할
+import { Provider } from "react-redux"; //중앙통제실 역할
+import createSagaMiddleware from "redux-saga";
 import reducer from "../reducers";
 import { LOAD_USER_REQUEST } from "../reducers/user";
 import axios from "axios";
 //npm i next-redux-wrapper
 // store를 넣어줄 구현이 안되있기 때문에 next에서 제공해주는 것을 사용
-import withRedux from "next-redux-wrapper";
-import sagaMiddleware from "../saga/middleware";
 import rootSaga from "../saga";
-import withReduxSaga from "next-redux-saga"; //넥스트용 리덕스 사가
 
 const Line = ({ Component, store, pageProps }) => {
-  console.log("pageProps", pageProps);
   return (
     <div>
       <Provider store={store}>
@@ -40,6 +38,7 @@ const Line = ({ Component, store, pageProps }) => {
 };
 // 서버 사이드 랜더링을 위함 (강의 59)
 Line.getInitialProps = async context => {
+  console.log("getInit");
   // next 에서 내려주는 context
   const { ctx, Component } = context; // context 안에 ctx
   let pageProps = {};
@@ -48,7 +47,11 @@ Line.getInitialProps = async context => {
   if (ctx.isServer && cookie) {
     axios.defaults.headers.Cookie = cookie;
   }
-  // console.log("line", state);
+  if (!state.me.me) {
+    ctx.store.dispatch({
+      type: LOAD_USER_REQUEST
+    });
+  }
 
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
@@ -60,13 +63,20 @@ Line.getInitialProps = async context => {
 const configureStore = (initialState, options) => {
   // 여기에다가 스토어 커스터마이징 (기능 추가)
   // 리덕스가 콘솔에 노출되지 않도록 (보안)
-  const middlewares = [sagaMiddleware];
+  const sagaMiddleware = createSagaMiddleware();
+  const middlewares = [
+    sagaMiddleware,
+    store => next => action => {
+      console.log("sagaAction ", action);
+      next(action);
+    }
+  ];
   const enhancer =
-    process.emitWarning && process.emitWarning.NODE_ENV === "production" //개발일때만 디벨롭툴 사용하도록 (보안)
+    process.env.NODE_ENV === "production"
       ? compose(applyMiddleware(...middlewares))
       : compose(
           applyMiddleware(...middlewares),
-          typeof window !== "undefined" &&
+          !options.isServer &&
             window.__REDUX_DEVTOOLS_EXTENSION__ !== "undefined"
             ? window.__REDUX_DEVTOOLS_EXTENSION__()
             : f => f

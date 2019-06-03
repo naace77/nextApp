@@ -77,19 +77,25 @@ const reducer = (state = initialState, action) => {
     case LOAD_USER_REQUEST: {
       return {
         // 다음 state 변경
-        ...state
+        ...state,
+        isLoggingIn: true,
+        logInErrorReason: ""
       };
     }
     case LOAD_USER_SUCCESS: {
       return {
         ...state,
+        isLoggedIn: true,
         me: action.data,
-        isLoggedIn: true
+        isLoggingIn: false,
+        logInErrorReason: ""
       };
     }
     case LOAD_USER_FAILURE: {
       return {
         ...state,
+        me: null,
+        isLoggingIn: false,
         logInErrorReason: action.data
       };
     }

@@ -18,9 +18,11 @@ import axios from "axios";
 axios.defaults.baseURL = "http://localhost:5000";
 
 function addEDocAPI(data) {
+  console.log("addEDocAPI");
   return axios.post("/edoc/getEdoc", data);
 }
 function* addEDoc(action) {
+  console.log("addEDoc");
   try {
     var result = yield call(addEDocAPI, action.data);
     yield put({
@@ -36,6 +38,7 @@ function* addEDoc(action) {
   }
 }
 function* watchAddEDoc() {
+  console.log("watchAddEdoc");
   yield takeEvery(ADD_EDOC_REQUEST, addEDoc);
 }
 export default function* edocSaga() {

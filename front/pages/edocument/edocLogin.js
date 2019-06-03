@@ -19,7 +19,6 @@ const edocLogin = props => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log("loginbtn Clicked", id, password.value);
     dispatch({
       type: LOG_IN_REQUEST,
       data: {
@@ -39,7 +38,6 @@ const edocLogin = props => {
     // });
   }, []); // 2번째 인자에 아무것도 안들어가면 componentdidmount랑 같다.
   const { logInErrorReason } = useSelector(state => state.me); // 여기서 state 는 전체 state (reducer/index.js - state)
-  console.log(logInErrorReason);
 
   return (
     <div style={{ padding: 20 }}>

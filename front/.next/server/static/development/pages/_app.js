@@ -989,25 +989,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/head */ "next/head");
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_AppLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/AppLayout */ "./components/AppLayout.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! redux */ "redux");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _reducers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../reducers */ "./reducers/index.js");
-/* harmony import */ var _reducers_user__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../reducers/user */ "./reducers/user.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! axios */ "axios");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var next_redux_wrapper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! next-redux-wrapper */ "next-redux-wrapper");
-/* harmony import */ var next_redux_wrapper__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(next_redux_wrapper__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _saga_middleware__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../saga/middleware */ "./saga/middleware.js");
-/* harmony import */ var _saga__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../saga */ "./saga/index.js");
-/* harmony import */ var next_redux_saga__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! next-redux-saga */ "next-redux-saga");
-/* harmony import */ var next_redux_saga__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(next_redux_saga__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var next_redux_wrapper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! next-redux-wrapper */ "next-redux-wrapper");
+/* harmony import */ var next_redux_wrapper__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_redux_wrapper__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var next_redux_saga__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! next-redux-saga */ "next-redux-saga");
+/* harmony import */ var next_redux_saga__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_redux_saga__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! redux */ "redux");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! redux-saga */ "redux-saga");
+/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(redux_saga__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _reducers__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../reducers */ "./reducers/index.js");
+/* harmony import */ var _reducers_user__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../reducers/user */ "./reducers/user.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _saga__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../saga */ "./saga/index.js");
 
 
 
 
- // _app.js 는 모든 곳에 들어가는 곳이기다.
+
+
+ //넥스트용 리덕스 사가
+// _app.js 는 모든 곳에 들어가는 곳이기다.
 // 리덕스는 모든 곳에서 공유해야 한다 따라서 이곳에서 정의.
 
  //중앙통제실 역할
@@ -1016,20 +1020,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
  //npm i next-redux-wrapper
 // store를 넣어줄 구현이 안되있기 때문에 next에서 제공해주는 것을 사용
 
 
 
-
- //넥스트용 리덕스 사가
-
 var Line = function Line(_ref) {
   var Component = _ref.Component,
       store = _ref.store,
       pageProps = _ref.pageProps;
-  console.log("pageProps", pageProps);
-  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_5__["Provider"], {
+  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_8__["Provider"], {
     store: store
   }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_3___default.a, null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("title", null, "\uB77C\uC778\uD398\uC774\uB864 \uC11C\uBE44\uC2A4"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("link", {
     rel: "stylesheet",
@@ -1051,7 +1052,8 @@ function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            // next 에서 내려주는 context
+            console.log("getInit"); // next 에서 내려주는 context
+
             ctx = context.ctx, Component = context.Component; // context 안에 ctx
 
             pageProps = {};
@@ -1059,27 +1061,32 @@ function () {
             cookie = ctx.isServer ? ctx.req.headers.cookie : ""; //서버사이드랜더링에서 서버에 쿠키 보내기 위해 작업
 
             if (ctx.isServer && cookie) {
-              axios__WEBPACK_IMPORTED_MODULE_9___default.a.defaults.headers.Cookie = cookie;
-            } // console.log("line", state);
+              axios__WEBPACK_IMPORTED_MODULE_12___default.a.defaults.headers.Cookie = cookie;
+            }
 
+            if (!state.me.me) {
+              ctx.store.dispatch({
+                type: _reducers_user__WEBPACK_IMPORTED_MODULE_11__["LOAD_USER_REQUEST"]
+              });
+            }
 
             if (!Component.getInitialProps) {
-              _context.next = 9;
+              _context.next = 11;
               break;
             }
 
-            _context.next = 8;
+            _context.next = 10;
             return Component.getInitialProps(ctx);
 
-          case 8:
+          case 10:
             pageProps = _context.sent;
 
-          case 9:
+          case 11:
             return _context.abrupt("return", {
               pageProps: pageProps
             });
 
-          case 10:
+          case 12:
           case "end":
             return _context.stop();
         }
@@ -1096,17 +1103,24 @@ function () {
 var configureStore = function configureStore(initialState, options) {
   // 여기에다가 스토어 커스터마이징 (기능 추가)
   // 리덕스가 콘솔에 노출되지 않도록 (보안)
-  var middlewares = [_saga_middleware__WEBPACK_IMPORTED_MODULE_11__["default"]];
-  var enhancer = process.emitWarning && process.emitWarning.NODE_ENV === "production" //개발일때만 디벨롭툴 사용하도록 (보안)
-  ? Object(redux__WEBPACK_IMPORTED_MODULE_6__["compose"])(redux__WEBPACK_IMPORTED_MODULE_6__["applyMiddleware"].apply(void 0, middlewares)) : Object(redux__WEBPACK_IMPORTED_MODULE_6__["compose"])(redux__WEBPACK_IMPORTED_MODULE_6__["applyMiddleware"].apply(void 0, middlewares), typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION__ !== "undefined" ? window.__REDUX_DEVTOOLS_EXTENSION__() : function (f) {
+  var sagaMiddleware = redux_saga__WEBPACK_IMPORTED_MODULE_9___default()();
+  var middlewares = [sagaMiddleware, function (store) {
+    return function (next) {
+      return function (action) {
+        console.log("sagaAction ", action);
+        next(action);
+      };
+    };
+  }];
+  var enhancer =  false ? undefined : Object(redux__WEBPACK_IMPORTED_MODULE_7__["compose"])(redux__WEBPACK_IMPORTED_MODULE_7__["applyMiddleware"].apply(void 0, middlewares), !options.isServer && window.__REDUX_DEVTOOLS_EXTENSION__ !== "undefined" ? window.__REDUX_DEVTOOLS_EXTENSION__() : function (f) {
     return f;
   });
-  var store = Object(redux__WEBPACK_IMPORTED_MODULE_6__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_7__["default"], initialState, enhancer);
-  store.sagaTask = _saga_middleware__WEBPACK_IMPORTED_MODULE_11__["default"].run(_saga__WEBPACK_IMPORTED_MODULE_12__["default"]);
+  var store = Object(redux__WEBPACK_IMPORTED_MODULE_7__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_10__["default"], initialState, enhancer);
+  store.sagaTask = sagaMiddleware.run(_saga__WEBPACK_IMPORTED_MODULE_13__["default"]);
   return store;
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (next_redux_wrapper__WEBPACK_IMPORTED_MODULE_10___default()(configureStore)(next_redux_saga__WEBPACK_IMPORTED_MODULE_13___default()(Line))); //withReduxSaga가 내부에서 필요로 한다. - 넥스트에서 서버사이드 랜더링 하기위해서
+/* harmony default export */ __webpack_exports__["default"] = (next_redux_wrapper__WEBPACK_IMPORTED_MODULE_5___default()(configureStore)(next_redux_saga__WEBPACK_IMPORTED_MODULE_6___default()(Line))); //withReduxSaga가 내부에서 필요로 한다. - 넥스트에서 서버사이드 랜더링 하기위해서
 // const store = createStore(reducer, initialState);
 // 고위컴포넌트, 하이오더컴포넌트 - 기존컴포넌트 기능을 확장해줌.
 
@@ -1333,20 +1347,27 @@ var reducer = function reducer() {
 
     case LOAD_USER_REQUEST:
       {
-        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state);
+        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+          isLoggingIn: true,
+          logInErrorReason: ""
+        });
       }
 
     case LOAD_USER_SUCCESS:
       {
         return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+          isLoggedIn: true,
           me: action.data,
-          isLoggedIn: true
+          isLoggingIn: false,
+          logInErrorReason: ""
         });
       }
 
     case LOAD_USER_FAILURE:
       {
         return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+          me: null,
+          isLoggingIn: false,
           logInErrorReason: action.data
         });
       }
@@ -1398,6 +1419,7 @@ _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(e
 axios__WEBPACK_IMPORTED_MODULE_3___default.a.defaults.baseURL = "http://localhost:5000";
 
 function addEDocAPI(data) {
+  console.log("addEDocAPI");
   return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/edoc/getEdoc", data);
 }
 
@@ -1407,38 +1429,39 @@ function addEDoc(action) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.prev = 0;
-          _context.next = 3;
+          console.log("addEDoc");
+          _context.prev = 1;
+          _context.next = 4;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(addEDocAPI, action.data);
 
-        case 3:
+        case 4:
           result = _context.sent;
-          _context.next = 6;
+          _context.next = 7;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])({
             type: _reducers_edocument01__WEBPACK_IMPORTED_MODULE_2__["ADD_EDOC_SECCESS"],
             data: result.data
           });
 
-        case 6:
-          _context.next = 13;
+        case 7:
+          _context.next = 14;
           break;
 
-        case 8:
-          _context.prev = 8;
-          _context.t0 = _context["catch"](0);
+        case 9:
+          _context.prev = 9;
+          _context.t0 = _context["catch"](1);
           console.log("err", _context.t0);
-          _context.next = 13;
+          _context.next = 14;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])({
             type: _reducers_edocument01__WEBPACK_IMPORTED_MODULE_2__["ADD_EDOC_FAILURE"],
             data: _context.t0.responce.data
           });
 
-        case 13:
+        case 14:
         case "end":
           return _context.stop();
       }
     }
-  }, _marked, null, [[0, 8]]);
+  }, _marked, null, [[1, 9]]);
 }
 
 function watchAddEDoc() {
@@ -1446,10 +1469,11 @@ function watchAddEDoc() {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          _context2.next = 2;
+          console.log("watchAddEdoc");
+          _context2.next = 3;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeEvery"])(_reducers_edocument01__WEBPACK_IMPORTED_MODULE_2__["ADD_EDOC_REQUEST"], addEDoc);
 
-        case 2:
+        case 3:
         case "end":
           return _context2.stop();
       }
@@ -1506,7 +1530,7 @@ function rootSaga() {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_user__WEBPACK_IMPORTED_MODULE_2__["default"]), Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_edocument01__WEBPACK_IMPORTED_MODULE_3__["default"])]);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["fork"])(_user__WEBPACK_IMPORTED_MODULE_2__["default"]), Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["fork"])(_edocument01__WEBPACK_IMPORTED_MODULE_3__["default"])]);
 
         case 2:
         case "end":
@@ -1515,23 +1539,6 @@ function rootSaga() {
     }
   }, _marked);
 }
-
-/***/ }),
-
-/***/ "./saga/middleware.js":
-/*!****************************!*\
-  !*** ./saga/middleware.js ***!
-  \****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-saga */ "redux-saga");
-/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_saga__WEBPACK_IMPORTED_MODULE_0__);
-
-var sagaMiddleware = redux_saga__WEBPACK_IMPORTED_MODULE_0___default()();
-/* harmony default export */ __webpack_exports__["default"] = (sagaMiddleware);
 
 /***/ }),
 
@@ -1600,6 +1607,7 @@ function loadUser(action) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
+          // console.log("loadUser", action.data);
           result = "";
           _context.prev = 1;
           _context.next = 4;
@@ -1609,13 +1617,6 @@ function loadUser(action) {
           result = _context.sent;
           _context.next = 7;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])({
-            type: _reducers_user__WEBPACK_IMPORTED_MODULE_2__["LOAD_USER_SUCCESS"],
-            data: result.data[0]
-          });
-
-        case 7:
-          _context.next = 9;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])({
             type: _reducers_edocument01__WEBPACK_IMPORTED_MODULE_3__["ADD_EDOC_REQUEST"],
             data: {
               stcode: result.data[0].SUSTCODE,
@@ -1624,20 +1625,28 @@ function loadUser(action) {
             }
           });
 
+        case 7:
+          _context.next = 9;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])({
+            type: _reducers_user__WEBPACK_IMPORTED_MODULE_2__["LOAD_USER_SUCCESS"],
+            data: result.data[0]
+          });
+
         case 9:
-          _context.next = 15;
+          _context.next = 16;
           break;
 
         case 11:
           _context.prev = 11;
           _context.t0 = _context["catch"](1);
-          _context.next = 15;
+          console.error("loadUserErr", _context.t0);
+          _context.next = 16;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])({
             type: _reducers_user__WEBPACK_IMPORTED_MODULE_2__["LOAD_USER_FAILURE"],
             data: _context.t0.response.data
           });
 
-        case 15:
+        case 16:
         case "end":
           return _context.stop();
       }
@@ -1746,20 +1755,20 @@ function login(action) {
           result = _context5.sent;
           _context5.next = 7;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])({
-            // put은 dispatch 동일
-            type: _reducers_user__WEBPACK_IMPORTED_MODULE_2__["LOG_IN_SUCCESS"],
-            data: result.data
-          });
-
-        case 7:
-          _context5.next = 9;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])({
             type: _reducers_edocument01__WEBPACK_IMPORTED_MODULE_3__["ADD_EDOC_REQUEST"],
             data: {
               stcode: result.data.SUSTCODE,
               scdbname: result.data.SCDBNAME,
               schostip: result.data.SCHOSTIP
             }
+          });
+
+        case 7:
+          _context5.next = 9;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])({
+            // put은 dispatch 동일
+            type: _reducers_user__WEBPACK_IMPORTED_MODULE_2__["LOG_IN_SUCCESS"],
+            data: result.data
           });
 
         case 9:

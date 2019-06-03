@@ -31,13 +31,10 @@ function loadUserAPI(data) {
   });
 }
 function* loadUser(action) {
+  // console.log("loadUser", action.data);
   var result = "";
   try {
     result = yield call(loadUserAPI, action.data);
-    yield put({
-      type: LOAD_USER_SUCCESS,
-      data: result.data[0]
-    });
     yield put({
       type: ADD_EDOC_REQUEST,
       data: {
@@ -46,7 +43,12 @@ function* loadUser(action) {
         schostip: result.data[0].SCHOSTIP
       }
     });
+    yield put({
+      type: LOAD_USER_SUCCESS,
+      data: result.data[0]
+    });
   } catch (e) {
+    console.error("loadUserErr", e);
     yield put({
       type: LOAD_USER_FAILURE,
       data: e.response.data
@@ -98,17 +100,17 @@ function* login(action) {
   try {
     result = yield call(loginAPI, action.data);
     yield put({
-      // put은 dispatch 동일
-      type: LOG_IN_SUCCESS,
-      data: result.data
-    });
-    yield put({
       type: ADD_EDOC_REQUEST,
       data: {
         stcode: result.data.SUSTCODE,
         scdbname: result.data.SCDBNAME,
         schostip: result.data.SCHOSTIP
       }
+    });
+    yield put({
+      // put은 dispatch 동일
+      type: LOG_IN_SUCCESS,
+      data: result.data
     });
   } catch (e) {
     // console.log("loginERRER", e.response.data);

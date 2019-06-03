@@ -1370,6 +1370,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _globalValue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../globalValue */ "./globalValue/index.js");
 /* harmony import */ var _editor_edit01__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../editor/edit01 */ "./pages/edocument/editor/edit01.js");
+/* harmony import */ var _reducers_user__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../reducers/user */ "./reducers/user.js");
+
 
 
 
@@ -1656,7 +1658,7 @@ var edoc01 = function edoc01() {
     dataIndex: "EJSIGNNAME",
     key: "EJSIGNNAME",
     width: "10%"
-  }];
+  }]; // const dispatch = useDispatch();
 
   var itemClicked =
   /*#__PURE__*/
@@ -2098,7 +2100,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reducers_user__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../reducers/user */ "./reducers/user.js");
 
 
-var _jsxFileName = "/Users/linepayroll/Desktop/nextApp/front/pages/edocument/edocLogin.js";
 
 
 
@@ -2125,7 +2126,6 @@ var edocLogin = function edocLogin(props) {
 
   var onSubmit = function onSubmit(e) {
     e.preventDefault();
-    console.log("loginbtn Clicked", id, password.value);
     dispatch({
       type: _reducers_user__WEBPACK_IMPORTED_MODULE_6__["LOG_IN_REQUEST"],
       data: {
@@ -2150,99 +2150,38 @@ var edocLogin = function edocLogin(props) {
       logInErrorReason = _useSelector.logInErrorReason; // 여기서 state 는 전체 state (reducer/index.js - state)
 
 
-  console.log(logInErrorReason);
   return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
     style: {
       padding: 20
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 45
-    },
-    __self: this
+    }
   }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Form"], {
     className: "login-form",
-    onSubmit: onSubmit,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 46
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 47
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Input"], {
+    onSubmit: onSubmit
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Input"], {
     prefix: react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Icon"], {
       type: "user",
       style: {
         color: "rgba(0,0,0,.25)"
-      },
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 49
-      },
-      __self: this
+      }
     }),
     placeholder: "ID",
     required: true,
     onChange: onChagneId // input 은 항상 value랑 onchange가 짝이 되야 한다
     ,
     name: "id",
-    value: id,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 48
-    },
-    __self: this
-  })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 57
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Input"], Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    value: id
+  })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Input"], Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
     prefix: react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Icon"], {
       type: "lock",
       style: {
         color: "rgba(0,0,0,.25)"
-      },
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 59
-      },
-      __self: this
+      }
     }),
     placeholder: "PASSWORD",
     required: true
-  }, password, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 58
-    },
-    __self: this
-  }))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 65
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 67
-    },
-    __self: this
-  }, logInErrorReason), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+  }, password))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", null, logInErrorReason), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
     type: "primary",
-    htmlType: "submit",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 68
-    },
-    __self: this
+    htmlType: "submit"
   }, "\uB85C\uADF8\uC778"))));
 };
 
@@ -2511,20 +2450,27 @@ var reducer = function reducer() {
 
     case LOAD_USER_REQUEST:
       {
-        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state);
+        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+          isLoggingIn: true,
+          logInErrorReason: ""
+        });
       }
 
     case LOAD_USER_SUCCESS:
       {
         return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+          isLoggedIn: true,
           me: action.data,
-          isLoggedIn: true
+          isLoggingIn: false,
+          logInErrorReason: ""
         });
       }
 
     case LOAD_USER_FAILURE:
       {
         return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+          me: null,
+          isLoggingIn: false,
           logInErrorReason: action.data
         });
       }
